@@ -140,7 +140,6 @@ select {
 
 .flow > *:where(:not(:first-child)) {
   margin-top: var(--flow-space, 1rem);
-  outline: 1px solid red;
 }
 
 .container {
@@ -150,8 +149,14 @@ select {
 }
 
 .grid-container {
-  border: 5px solid limegreen;
+  text-align: center;
   display: grid;
+  place-items: center;
+  padding-inline: 1rem;
+}
+
+.grid-container * {
+  max-width: 50ch;
 }
 
 @media (min-width: 45rem) {
@@ -165,12 +170,15 @@ select {
 
   .grid-container > *:first-child {
     grid-column: 2;
-    outline: 1px solid red;
   }
 
   .grid-container > *:last-child {
     grid-column: 3;
-    outline: 1px solid yellow;
+  }
+
+  .grid-container--home {
+    padding-bottom: 6rem;
+    align-items: end;
   }
 }
 
@@ -284,6 +292,7 @@ select {
 /* ------------------- */
 
 .large-button {
+  font-size: 2rem;
   position: relative;
   display: inline-grid;
   z-index: 1;
