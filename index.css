@@ -464,7 +464,25 @@ select {
 .dot-indicators > [aria-selected="true"] {
   background-color: hsl(var(--clr-white) / 1);
 }
+.number-indicators > * {
+  cursor: pointer;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid hsl(var(--clr-white) / 0.5);
+  border-radius: 50%;
+  aspect-ratio: 1;
+}
 
+.number-indicators > *:hover,
+.number-indicators > *:focus {
+  border-color: hsl(var(--clr-white) / 1);
+}
+
+.number-indicators > [aria-selected="true"] {
+  color: hsl(var(--clr-dark));
+  background-color: hsl(var(--clr-white) / 1);
+}
 /* ----------------------------- */
 /* Page specific background      */
 /* ----------------------------- */
@@ -526,10 +544,27 @@ body {
   }
 }
 
+/* technology */
+.technology {
+  background-image: url(./assets/technology/background-technology-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .technology {
+    background-position: center center;
+    background-image: url(./assets/technology/background-technology-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .technology {
+    background-image: url(./assets/technology/background-technology-desktop.jpg);
+  }
+}
+
 /* ----------------------------- */
 /* Layout                        */
 /* ----------------------------- */
-
 .grid-container {
   text-align: center;
   display: grid;
@@ -611,10 +646,47 @@ body {
   color: hsl(var(--clr-white) / 0.5);
 }
 
+/* Technology Layout */
+
+.grid-container--technology {
+  --flow-space: 1.5rem;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+
+.grid-container--technology > .numbered-title {
+  grid-area: title;
+}
+
+.grid-container--technology > picture {
+  grid-area: image;
+  margin-inline: -2rem;
+  max-width: 100vw;
+  align-self: center;
+}
+
+.grid-container--technology > .number-indicators {
+  --flow-space: 2rem;
+  grid-area: tabs;
+}
+
+.grid-container--technology > .technology-details {
+  grid-area: content;
+  align-self: start;
+}
+
 @media (min-width: 35em) {
   .numbered-title {
     justify-self: start;
     margin-top: 2rem;
+  }
+
+  .number-indicators > * {
+    width: 4rem;
+    height: 4rem;
   }
 
   .destination-meta {
@@ -629,6 +701,33 @@ body {
       "content"
       "tabs"
       "image";
+  }
+
+  .grid-container--technology > .technology-details {
+    grid-area: content;
+    max-width: 70%;
+  }
+
+  .grid-container--technology {
+    --flow-space: 1rem;
+    grid-template-areas:
+      "title"
+      "image"
+      "tabs"
+      "content";
+    grid-template-rows: minmax(0, 7%) minmax(0, 45%) minmax(0, 10%) minmax(
+        0,
+        1fr
+      );
+  }
+
+  .grid-container--technology > .technology-details {
+    align-self: start;
+    margin-top: 2rem;
+  }
+
+  .grid-container--technology > .technology-details > p {
+    max-width: 28rem;
   }
 }
 
@@ -689,5 +788,62 @@ body {
     grid-column: span 2;
     align-self: end;
     max-width: 100%;
+  }
+
+  .technology > .grid-container {
+    --container-gap: 4rem;
+  }
+
+  .grid-container--technology {
+    grid-template-columns: minmax(2rem, 1fr) minmax(0, 5rem) minmax(0, 55rem) minmax(
+        2rem,
+        1fr
+      );
+    grid-template-rows: minmax(0, 10rem) minmax(25rem, 50%) minmax(0, 1fr);
+    justify-items: start;
+    grid-template-areas:
+      ". title title ."
+      ". tabs content image"
+      ". . . .";
+  }
+
+  .grid-container--technology > .numbered-title {
+    align-self: start;
+    margin-left: 1rem;
+  }
+
+  .technology-details {
+    --flow-space: 3rem;
+    align-self: start;
+  }
+
+  .technology-details > p {
+    --flow-space: 0rem;
+    min-width: 15rem;
+    max-width: 27.5rem;
+    line-height: 1.75;
+  }
+  .technology-details > header > p {
+    white-space: nowrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .number-indicators {
+    --gap: 2rem;
+    flex-direction: column;
+    align-self: start;
+    margin: 3rem 1rem;
+  }
+
+  .number-indicators > * {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .grid-container--technology > picture {
+    justify-self: end;
+    align-self: center;
+    min-width: 35vw;
+    max-width: max-content;
   }
 }
